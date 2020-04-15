@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <!-- 1.需要使用到requirejs库 加载组件 -->
+  <script src="https://cdn.bootcss.com/require.js/2.3.5/require.js"></script>
+</head>
+<body>
+
+<div id="button1">
+  <div class="ant-upload-text">Upload1</div>
+</div>
+
+<div id="button2">
+  <div class="ant-upload-text">Upload2</div>
+</div>
+
+<script>
+    // 配置地址
+    require.config({
+        paths: {'flyUpload': '../dist'},
+    });
+    // 加载js
+    require(['flyUpload/loader'], (loader) => {
+        // 设置附件中心地址与应用id
+        loader.config({
+            attachmentHost: '',
+            defaultAppID: '',
+        });
+        // 实例化上传组件 方法1 使用选择器
+        loader.create({
+            selector: '#button1',
+            params: {
+                accessType: "auth"
+            },
+            nzListType: "picture-card",
+            nzFileListChange(files) {
+                console.log(files);
+            }
+        });
+        // 实例化上传组件 方法2 使用元素
+        loader.create({
+            selector: document.querySelector('#button2'),
+            params: {
+                accessType: "auth"
+            },
+            nzListType: "picture-card",
+            nzFileListChange(files) {
+                console.log(files);
+            }
+        });
+    });
+</script>
+</body>
+</html>

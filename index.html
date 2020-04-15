@@ -9,11 +9,7 @@
     paths: {'flyUpload': 'assets/file-upload'},
   });
 
-  require(['flyUpload/loader'],
-    /**
-     * @param {typeof import("loader/loader.ts")} [loader] - Somebody's name.
-     */
-    (loader) => {
+  require(['flyUpload/loader'], (loader) => {
       loader.config({
         attachmentHost: '',
         defaultAppID: '',

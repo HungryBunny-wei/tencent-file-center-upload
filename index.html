@@ -1,0 +1,54 @@
+<!-- 1.需要使用到requirejs库 加载组件 -->
+<script src="https://cdn.bootcss.com/require.js/2.3.5/require.js"></script>
+
+<div id="app"></div>
+
+
+<script>
+  require.config({
+    paths: {'flyUpload': 'assets/file-upload'},
+  });
+
+  require(['flyUpload/loader'],
+    /**
+     * @param {typeof import("loader/loader.ts")} [loader] - Somebody's name.
+     */
+    (loader) => {
+      loader.config({
+        attachmentHost: '',
+        defaultAppID: '',
+      });
+      loader.create({
+        selector: '#button',
+        params: {
+          accessType: "auth"
+        },
+        nzListType: "picture-card",
+        nzFileListChange(files){
+          console.log(files);
+        }
+      });
+      loader.create({
+        selector: '#button2',
+        params: {
+          bizTable: 'test',
+          bizType: 'test',
+          accessType: "auth"
+        },
+        nzListType: "picture",
+        nzFileListChange(files){
+          console.log(files);
+        }
+      });
+      loader.create({
+        selector: '#button3',
+        params: {
+          accessType: "auth"
+        },
+        nzFileListChange(files){
+          console.log(files);
+        }
+      });
+
+    });
+</script>
